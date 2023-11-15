@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ChatApp.Pages.Tabbed.SearchResults"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp"
+    BackgroundColor="#FFF3E2">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Margin="20,20,20,0"
+                ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid
+                    x:Name="SearchBar"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    IsVisible="true"
+                    VerticalOptions="Start">
+                    <Frame
+                        Grid.Row="0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30">
+
+                        <local:CustomSearchBar
+                            x:Name="SearchEntry"
+                            BackgroundColor="Transparent"
+                            FontSize="Small"
+                            Keyboard="Email"
+                            Placeholder="Buscar correo electronico"
+                            TextChanged="SearchQuery" />
+                    </Frame>
+                </Grid>
+
+                <StackLayout Grid.Column="1" BackgroundColor="Transparent">
+                    <Label
+                        Text="Cancel"
+                        TextColor="#ED4C67"
+                        VerticalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoBack" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Grid>
+
+            <Label
+                x:Name="AlertLabel"
+                Grid.Row="1"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="false"
+                Text="Usuario no encontrado"
+                TextColor="#757575"
+                VerticalOptions="CenterAndExpand" />
+
+            <Grid
+                Grid.Row="1"
+                Margin="20,10,20,0"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListView
+                    x:Name="userListView"
+                    Grid.Row="0"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    RefreshControlColor="#ED4C67"
+                    SeparatorColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0" BackgroundColor="Transparent">
+                                    <Frame BorderColor="Transparent" CornerRadius="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Margin="-10,0,20,0">
+                                                <Frame
+                                                    Padding="0"
+                                                    BackgroundColor="#ED4C67"
+                                                    BorderColor="Transparent"
+                                                    CornerRadius="25"
+                                                    HeightRequest="50"
+                                                    HorizontalOptions="Center"
+                                                    IsClippedToBounds="True"
+                                                    WidthRequest="50">
+                                                    <Image
+                                                        BackgroundColor="#ED4C67"
+                                                        HorizontalOptions="Center"
+                                                        Scale=".6"
+                                                        Source="user_light"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
+                                                    Text="{Binding username}"
+                                                    TextColor="#424242"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    FontSize="Small"
+                                                    Text="{Binding email}"
+                                                    TextColor="#bdbdbd"
+                                                    VerticalOptions="Center" />
+                                            </StackLayout>
+
+                                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Image
+                                                    BackgroundColor="Transparent"
+                                                    HeightRequest="25"
+                                                    Source="add"
+                                                    WidthRequest="25">
+                                                    <Image.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding uid, Converter={StaticResource isFriendConverter}}"
+                                                            TargetType="Image"
+                                                            Value="True">
+                                                            <Setter Property="Source" Value="check" />
+                                                        </DataTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding uid}" Tapped="AddToContact" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

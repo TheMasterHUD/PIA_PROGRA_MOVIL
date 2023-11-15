@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Pages.Tabbed.Conversation"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp"
+    BackgroundColor="#FFF3E2">
+
+    <StackLayout Padding="20,20,20,0" BackgroundColor="#FFF3E2">
+
+        <StackLayout VerticalOptions="Start">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Frame
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="0"
+                    BackgroundColor="#ED4C67"
+                    CornerRadius="20"
+                    HeightRequest="35"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="35">
+                    <Image
+                        BackgroundColor="#ED4C67"
+                        HorizontalOptions="Center"
+                        Scale=".6"
+                        Source="user_light"
+                        VerticalOptions="Center" />
+                </Frame>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding username}"
+                    TextColor="#757575"
+                    VerticalOptions="Center" />
+
+                <ImageButton
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"
+                    Clicked="GoBack"
+                    HeightRequest="20"
+                    HorizontalOptions="End"
+                    Source="close"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+
+            </Grid>
+        </StackLayout>
+
+        <!--  Messages  -->
+        <StackLayout
+            x:Name="messageListGrid"
+            IsVisible="True"
+            VerticalOptions="CenterAndExpand">
+            <!--  Start Converstation  -->
+            <StackLayout
+                x:Name="AlertLabel"
+                IsVisible="False"
+                VerticalOptions="StartAndExpand">
+                <Label
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text="Ahora puedes conversar con esta persona"
+                    TextColor="#757575"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+            <Grid
+                Margin="10,0"
+                BackgroundColor="#FFF3E2"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <ListView
+                    x:Name="conversationListView"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    RefreshControlColor="#ED4C67"
+                    SeparatorColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Margin="5,5,30,5"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="StartAndExpand">
+                                    <StackLayout.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding ., Converter={StaticResource isViewerConverter}}"
+                                            TargetType="StackLayout"
+                                            Value="True">
+                                            <Setter Property="HorizontalOptions" Value="End" />
+                                            <Setter Property="Margin" Value="30,5,5,5" />
+
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
+                                    <!--<Grid.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ., Converter={StaticResource isViewerConverter}}"
+                                                TargetType="Grid"
+                                                Value="True">
+                                                <Setter Property="ColumnDefinitions" Value=" 40, *" />
+                                            </DataTrigger>
+                                        </Grid.Triggers>-->
+
+                                    <Frame
+                                        Grid.Column="0"
+                                        Margin="0"
+                                        Padding="5"
+                                        BackgroundColor="#ED4C67"
+                                        CornerRadius="30"
+                                        HasShadow="True"
+                                        HorizontalOptions="Start"
+                                        MinimumWidthRequest="20">
+                                        <Frame.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ., Converter={StaticResource isViewerConverter}}"
+                                                TargetType="Frame"
+                                                Value="True">
+                                                <Setter Property="Grid.Column" Value="1" />
+                                                <Setter Property="BackgroundColor" Value="#40407a" />
+                                                <Setter Property="HorizontalOptions" Value="End" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                        <Label
+                                            Margin="10"
+                                            LineBreakMode="WordWrap"
+                                            Text="{Binding message}"
+                                            TextColor="white" />
+                                    </Frame>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+
+        <!--  Message Entry  -->
+        <StackLayout
+            BackgroundColor="Transparent"
+            Orientation="Horizontal"
+            VerticalOptions="End">
+            <StackLayout
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
+                <Grid ColumnSpacing="0" RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,0,10"
+                        Padding="20,5,20,5"
+                        BackgroundColor="#eeeeee"
+                        BorderColor="Transparent"
+                        CornerRadius="25"
+                        MinimumHeightRequest="100"
+                        VerticalOptions="End"
+                        WidthRequest="1000">
+                        <local:CustomEditor
+                            x:Name="MessageEntry"
+                            AutoSize="TextChanges"
+                            BackgroundColor="#eeeeee"
+                            Focused="ToggleSendButton"
+                            FontSize="Small"
+                            Keyboard="Chat"
+                            MaxLength="240"
+                            MinimumHeightRequest="50"
+                            Placeholder="Escribe tu mensaje aqui..."
+                            TextChanged="ToggleSendButton" />
+                    </Frame>
+                    <ImageButton
+                        x:Name="SendButton"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5,0,5,17"
+                        BackgroundColor="Transparent"
+                        Clicked="SendMessage"
+                        HeightRequest="35"
+                        HorizontalOptions="CenterAndExpand"
+                        Rotation="45"
+                        Source="send_disabled"
+                        VerticalOptions="End" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+   
+<ContentView
+    x:Class="ChatApp.Pages.Tabbed.Chats"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#FFF3E2">
+
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" BackgroundColor="#FFF3E2">
+            <Grid
+             
+                x:Name="ContactListGrid"
+                Margin="20,10,20,-12"
+                BackgroundColor="#FFF3E2"
+                HorizontalOptions="StartAndExpand"
+                IsVisible="True"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Margin="10,0,0,10"
+                    Text="Contactos"
+                    TextColor="#424242"
+                    BackgroundColor="#FFF3E2"
+                    VerticalTextAlignment="Start" />
+                <ListView
+                    x:Name="ContactListView"
+                    Grid.Row="0"
+                    BackgroundColor="#FFF3E2"
+                    HasUnevenRows="True"
+                    IsPullToRefreshEnabled="True"
+                    RefreshControlColor="#ED4C67"
+                    SeparatorColor="#FFF3E2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid  BackgroundColor="#FFF3E2" >
+                                    <!--TEST Padding="0"-->
+                                    <Frame BorderColor="#FFF3E2" CornerRadius="50">
+                                        <!--<Frame.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                TargetType="Frame"
+                                                Value="True">
+                                                <Setter Property="BorderColor" Value="LightGreen" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>-->
+
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="#FFF">
+                                            <StackLayout BackgroundColor="#FFF"><!--TEST Margin="-10,0,20,0"-->
+                                                <Frame
+                                                    Padding="10"
+                                                    BackgroundColor="#ED4C67"
+                                                    CornerRadius="25"
+                                                    HeightRequest="50"
+                                                    HorizontalOptions="Center"
+                                                    IsClippedToBounds="True"
+                                                    WidthRequest="50">
+                                                    <Image
+                                                        BackgroundColor="#ED4C67"
+                                                        HorizontalOptions="Center"
+                                                        Scale=".6"
+                                                        Source="user_light"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <StackLayout VerticalOptions="Center" BackgroundColor="#FFF">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
+                                                    Text="{Binding contactName[0]}"
+                                                    TextColor="#424242"
+                                                    VerticalOptions="Center"
+                                                    BackgroundColor="#FFF">
+                                                    <Label.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                            TargetType="Label"
+                                                            Value="True">
+                                                            <Setter Property="Text" Value="{Binding contactName[1]}" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                                <Label
+                                                    FontSize="Small"
+                                                    Text="{Binding contactEmail[0]}"
+                                                    TextColor="#757575"
+                                                    VerticalOptions="Center"
+                                                    BackgroundColor="#FFF3E2">
+                                                    <Label.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                            TargetType="Label"
+                                                            Value="True">
+                                                            <Setter Property="Text" Value="{Binding contactEmail[1]}" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </StackLayout>
+
+                                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="#FFF3E2">
+                                                <Image
+                                                    BackgroundColor="#FFF3E2"
+                                                    HeightRequest="25"
+                                                    Source="check"
+                                                    WidthRequest="25" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding id}" Tapped="Frame_GoToConvo" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+
+    </ContentView.Content>
+
+</ContentView>

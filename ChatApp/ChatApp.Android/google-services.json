@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694486248132",
+    "project_id": "chatapp-12b14",
+    "storage_bucket": "chatapp-12b14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694486248132:android:af0187ca4d7e4d78d6b791",
+        "android_client_info": {
+          "package_name": "com.bartlettvanguardia.convo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694486248132-3kf8i2m859h4erp440kjshuoqfg8umlv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_lQI_vUZnZ11JxpSyGRp3hmK3WN4k4sU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694486248132-3kf8i2m859h4erp440kjshuoqfg8umlv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

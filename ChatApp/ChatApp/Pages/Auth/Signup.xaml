@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Pages.Auth.Signup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp"
+    BackgroundColor="#FFF3E2">
+
+
+    <StackLayout BackgroundColor="#FFF3E2">
+
+        <StackLayout
+            BackgroundColor="Transparent"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+            <StackLayout
+                Grid.Row="0"
+                Margin="10,20,10,0"
+                Orientation="Horizontal">
+                <StackLayout
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="CenterAndExpand">
+
+                    <Image
+                        BackgroundColor="transparent"
+                        HeightRequest="30"
+                        HorizontalOptions="StartAndExpand"
+                        Source="back.png"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Atras"
+                        TextColor="#424242"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Btn_Back" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+
+        <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout
+                BackgroundColor="Transparent"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Vertical"
+                VerticalOptions="CenterAndExpand">
+
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,-30,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" Margin="0,0,0,0">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="100"
+                                Source="logo.png" />
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1">
+                            <Grid
+                                Padding="20,20,20,20"
+                                HorizontalOptions="FillAndExpand"
+                                RowSpacing="20"
+                                VerticalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="24"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="Crear una cuenta"
+                                    TextColor="#424242" />
+
+                                <Frame
+                                    x:Name="UsernameFrame"
+                                    Grid.Row="1"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#bdbdbd"
+                                    CornerRadius="30"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                                        <local:CustomEntry
+                                            x:Name="UsernameEntry"
+                                            Focused="Focused_Username"
+                                            FontSize="Small"
+                                            HorizontalOptions="FillAndExpand"
+                                            Placeholder="Nombre de usuario"
+                                            VerticalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame
+                                    x:Name="EmailFrame"
+                                    Grid.Row="2"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#bdbdbd"
+                                    CornerRadius="30"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                                        <local:CustomEntry
+                                            x:Name="EmailEntry"
+                                            Focused="Focused_Email"
+                                            FontSize="Small"
+                                            HorizontalOptions="FillAndExpand"
+                                            Keyboard="Email"
+                                            Placeholder="Correo Electronico"
+                                            VerticalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame
+                                    x:Name="PasswordFrame"
+                                    Grid.Row="3"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#bdbdbd"
+                                    CornerRadius="30"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                                        <local:CustomEntry
+                                            x:Name="PasswordEntry"
+                                            Grid.Row="2"
+                                            Focused="Focused_Password"
+                                            FontSize="Small"
+                                            HorizontalOptions="FillAndExpand"
+                                            IsPassword="True"
+                                            Placeholder="Contraseña"
+                                            VerticalOptions="FillAndExpand" />
+
+                                        <ImageButton
+                                            x:Name="eyeButton1"
+                                            Margin="0,0,10,0"
+                                            BackgroundColor="Transparent"
+                                            Clicked="toggleVisibility"
+                                            HeightRequest="20"
+                                            HorizontalOptions="End"
+                                            Source="hide"
+                                            VerticalOptions="Center">
+                                            <!-- <ImageButton.Triggers>
+                                        <EventTrigger Event="Clicked">
+                                            <local:ShowPasswordTriggerAction
+                                                x:Name="ShowPasswordActualTrigger1"
+                                                HideIcon="hide"
+                                                ShowIcon="show" />
+                                        </EventTrigger>
+                                    </ImageButton.Triggers>-->
+                                        </ImageButton>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame
+                                    x:Name="ConfirmPasswordFrame"
+                                    Grid.Row="4"
+                                    Padding="0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="#bdbdbd"
+                                    CornerRadius="30"
+                                    HorizontalOptions="FillAndExpand">
+                                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                                        <local:CustomEntry
+                                            x:Name="ConfirmPasswordEntry"
+                                            Grid.Row="2"
+                                            Focused="Focused_ConfirmPassword"
+                                            FontSize="Small"
+                                            HorizontalOptions="FillAndExpand"
+                                            IsPassword="True"
+                                            Placeholder="Confirmar contraseña"
+                                            VerticalOptions="FillAndExpand" />
+
+                                        <ImageButton
+                                            x:Name="eyeButton2"
+                                            Margin="0,0,10,0"
+                                            BackgroundColor="Transparent"
+                                            Clicked="toggleVisibility"
+                                            HeightRequest="20"
+                                            HorizontalOptions="End"
+                                            Source="hide"
+                                            VerticalOptions="Center">
+                                            <!--<ImageButton.Triggers>
+                                        <EventTrigger Event="Clicked">
+                                            <local:ShowPasswordTriggerAction
+                                                x:Name="ShowPasswordActualTrigger2"
+                                                HideIcon="hide"
+                                                ShowIcon="show" />
+                                        </EventTrigger>
+                                    </ImageButton.Triggers>-->
+                                        </ImageButton>
+
+                                    </StackLayout>
+                                </Frame>
+
+                                <local:CustomButton
+                                    Grid.Row="5"
+                                    BackgroundColor="#ED4C67"
+                                    Clicked="Btn_SignUp"
+                                    CornerRadius="20"
+                                    Text="Crear cuenta"
+                                    TextColor="White" />
+
+                                <local:CustomButton
+                                    Grid.Row="6"
+                                    BackgroundColor="#ED4C67"
+                                    Clicked="Btn_Back"
+                                    CornerRadius="20"
+                                    Text="Ingresar a tu cuenta"
+                                    TextColor="White" />
+
+                                <Grid Grid.Row="7">
+                                    <BoxView
+                                        BackgroundColor="#bdbdbd"
+                                        HeightRequest="1"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        WidthRequest="100" />
+                                    <Frame
+                                        Margin="0"
+                                        Padding="0"
+                                        BorderColor="#bdbdbd"
+                                        CornerRadius="15"
+                                        HasShadow="False"
+                                        HeightRequest="30"
+                                        HorizontalOptions="Center"
+                                        WidthRequest="30">
+                                        <Label
+                                            BackgroundColor="#bdbdbd"
+                                            FontSize="14"
+                                            HorizontalTextAlignment="Center"
+                                            Text="-----"
+                                            TextColor="White"
+                                            VerticalTextAlignment="Center" />
+                                    </Frame>
+                                </Grid>
+                                <!--
+                                <StackLayout
+                                    Grid.Row="8"
+                                    Margin="5"
+                                    Orientation="Vertical">
+
+                                    <StackLayout
+                                        HorizontalOptions="CenterAndExpand"
+                                        Orientation="Horizontal"
+                                        Spacing="4">
+                                        <Frame
+                                            Padding="4"
+                                            CornerRadius="20"
+                                            OutlineColor="#bdbdbd">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image
+                                                    BackgroundColor="transparent"
+                                                    HeightRequest="25"
+                                                    Source="google.png" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="13"
+                                                    Text="Ingresar con Google     "
+                                                    TextColor="#424242"
+                                                    VerticalOptions="Center" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Btn_SignUpWithGoogle" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+
+                                        </Frame>
+
+                                        <Frame
+                                            Padding="4"
+                                            CornerRadius="20"
+                                            OutlineColor="#bdbdbd">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image
+                                                    BackgroundColor="transparent"
+                                                    HeightRequest="25"
+                                                    Source="fb.png" />
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="13"
+                                                    Text="Ingresar con Facebook "
+                                                    TextColor="#424242"
+                                                    VerticalOptions="Center" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Btn_SignUpWithFB" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>-->
+
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Transparent" />
+
+            <ActivityIndicator
+                x:Name="ActivityIndicator"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HorizontalOptions="CenterAndExpand"
+                IsRunning="False"
+                VerticalOptions="CenterAndExpand" />
+
+        </AbsoluteLayout>
+
+    </StackLayout>
+
+</ContentPage>

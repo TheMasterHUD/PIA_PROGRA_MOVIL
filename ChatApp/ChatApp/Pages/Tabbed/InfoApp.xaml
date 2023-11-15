@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChatApp.Pages.Tabbed.InfoApp"
+             xmlns:local="clr-namespace:ChatApp">
+    <ContentPage.Content>
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+
+            <Grid
+            x:Name="WelcomeGrid"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0">
+                    <Image
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="logo.png" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="1">
+                    <Grid
+                    Padding="20,20,20,20"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="BIENVENIDO AL CHAT DE FACPYA"
+                        TextColor="#E74646" />
+
+                        <StackLayout Grid.Row="1">
+                            <!-- Imagen de bienvenida -->
+                            <Image
+                            Aspect="AspectFit"
+                            HeightRequest="100"
+                            Source="welcome_image.png" />
+                        </StackLayout>
+
+                        <Label
+                        Grid.Row="2"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="Con esta app puedes chatear con tus amigos de la facultad ya sea para temas de trabajo o simplemente para conversar cualquier cosa"
+                        TextColor="#424242" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+
+        <!--<BoxView
+            AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            BackgroundColor="Transparent" />
+
+        <ActivityIndicator
+            x:Name="ActivityIndicator"
+            AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="False"
+            VerticalOptions="CenterAndExpand" />-->
+    </ContentPage.Content>
+</ContentPage>

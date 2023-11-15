@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Pages.Tabbed.MainTabbed"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:TabbedView="clr-namespace:ChatApp.Pages.Tabbed"
+    xmlns:local="clr-namespace:ChatApp"
+    BackgroundColor="#FFF3E2">
+
+    <ContentPage.Content>
+
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Gestures  -->
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="Nav_Profile" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="Nav_Chat" />
+            </Grid.GestureRecognizers>
+
+            <!-- Main menu for redirect to pages -->
+            <!--<StackLayout Grid.Row="0" Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,20,20,0">
+                <Frame
+                    BackgroundColor="Transparent"
+                    BorderColor="#bdbdbd"
+                    CornerRadius="30"
+                    Padding="0">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_contacts.png" HeightRequest="25" WidthRequest="25" Margin="10" />
+                        <Label Text="Agregar Contactos" VerticalOptions="CenterAndExpand" Margin="10">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Nav_AddContacts" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+
+                <Frame
+                    BackgroundColor="Transparent"
+                    BorderColor="#bdbdbd"
+                    CornerRadius="30"
+                    Padding="0"
+                    Margin="10,0,0,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="icon_chat.png" HeightRequest="25" WidthRequest="25" Margin="10" />
+                        <Label Text="Chats" VerticalOptions="CenterAndExpand" Margin="10">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Nav_Chat" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>-->
+
+            <!--Search Bar-->  
+            <StackLayout
+                x:Name="SearchBar"
+                Grid.Row="0"
+                IsVisible="true"
+                VerticalOptions="Start">
+                <Frame
+                    Margin="20,20,20,0"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#bdbdbd"
+                    CornerRadius="30">
+
+                    <local:CustomSearchBar
+                        x:Name="SearchEntry"
+                        BackgroundColor="Transparent"
+                        Focused="Nav_Result"
+                        FontSize="Small"
+                        MaxLength="0"
+                        Placeholder="Buscar correo electronico" />
+                </Frame>
+            </StackLayout>
+
+            <!--  Alert Label  -->
+            <Label
+                x:Name="AlertLabel"
+                Grid.Row="1"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                IsVisible="True"
+                Text="No tienes contactos aun."
+                TextColor="#757575"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+
+
+            <!--  Profile View  -->
+            <StackLayout
+                BackgroundColor="#FFF3E2"
+                Grid.Row="1"
+                Margin="0,0,0,0"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <TabbedView:Profile x:Name="Profile" IsVisible="False" />
+            </StackLayout>
+
+
+            <!--  Chat View  -->
+            <StackLayout
+                BackgroundColor="#FFF3E2"
+                Grid.Row="1"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="StartAndExpand">
+                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
+            </StackLayout>
+
+
+            <!--  NavBar  -->
+            <StackLayout
+                Grid.Row="4"
+                BackgroundColor="#FFF3E2"
+                IsVisible="true"
+                VerticalOptions="End">
+                <Grid
+                    BackgroundColor="#FFF3E2"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".2" />
+                        <RowDefinition Height="65" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="#bdbdbd"
+                        HasShadow="False"
+                        HeightRequest="0.01"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End" />
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image
+                            x:Name="InfoAppImage"
+                            HeightRequest="30"
+                            Source="info_disabled.png" />
+                        <Label x:Name="InfoAppLabel" TextColor="#bcbcbc">Info</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_InfoApp" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <!--<StackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image
+                            x:Name="AddContactsImage"
+                            HeightRequest="30"
+                            Source="add_disabled.png" />
+                        <Label x:Name="AddContactsLabel" TextColor="#ED4C67">Add</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_AddContacts" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>-->
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image
+                            x:Name="ChatImage"
+                            HeightRequest="30"
+                            Source="home_disabled.png" />
+                        <Label x:Name="ChatLabel" TextColor="#ED4C67">Home</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_Chat" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image
+                            x:Name="ProfileImage"
+                            HeightRequest="30"
+                            Source="profile_disabled.png" />
+                        <Label x:Name="ProfileLabel" TextColor="#bcbcbc">Profile</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_Profile" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        Margin="0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image
+                            x:Name="HelpImage"
+                            HeightRequest="30"
+                            Source="help_disabled.png" />
+                        <Label x:Name="HelpLabel" TextColor="#bcbcbc">Help</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_Help" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
